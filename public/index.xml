@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ahmed Abdou on My New Hugo Site</title>
-    <link>https://example.org/</link>
-    <description>Recent content in Ahmed Abdou on My New Hugo Site</description>
+    <title>Ahmed Abdou</title>
+    <link>https://ahmedabdel-aal.github.io/</link>
+    <description>Recent content on Ahmed Abdou</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Jan 2022 07:07:07 +0100</lastBuildDate>
-    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ahmedabdel-aal.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Non-Causal Associations - Reasons and Examples</title>
-      <link>https://example.org/posts/non-causal-associations-reasons-and-examples/</link>
+      <link>https://ahmedabdel-aal.github.io/posts/non-causal-associations-reasons-and-examples/</link>
       <pubDate>Sat, 01 Jan 2022 07:07:07 +0100</pubDate>
-      <guid>https://example.org/posts/non-causal-associations-reasons-and-examples/</guid>
+      <guid>https://ahmedabdel-aal.github.io/posts/non-causal-associations-reasons-and-examples/</guid>
       <description>One phrase you heard in your probability class is that correlation does not imply causation. Later, you came across the the popular association between ice-cream and drowning numbers, you instantly recall that does not mean the ice-cream is the cause of the drowning. But, how can you explain the existence of the association? In this blog post, various interpretation of the non-casual associations is listed and explained. The code snippets used are in this notebook</description>
     </item>
   </channel>
