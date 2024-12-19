@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Non-Causal Associations - Reasons and Examples | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="One phrase you heard in your probability class is that correlation does not imply causation. Later, you came across the the popular association between ice-cream and drowning numbers, you instantly recall that does not mean the ice-cream is the cause of the drowning. But, how can you explain the existence of the association? In this blog post, various interpretation of the non-casual associations is listed and explained. The code snippets used are in this notebook">
+    <meta name="generator" content="Hugo 0.128.2">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.2438bcafd7af9675c426d1a4afcd16cfff18e4e10f401071e45b5ccd3be40a0d.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/non-causal-associations-reasons-and-examples/">
+    
+
+    <meta property="og:url" content="https://example.org/posts/non-causal-associations-reasons-and-examples/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Non-Causal Associations - Reasons and Examples">
+  <meta property="og:description" content="One phrase you heard in your probability class is that correlation does not imply causation. Later, you came across the the popular association between ice-cream and drowning numbers, you instantly recall that does not mean the ice-cream is the cause of the drowning. But, how can you explain the existence of the association? In this blog post, various interpretation of the non-casual associations is listed and explained. The code snippets used are in this notebook">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-01-01T07:07:07+01:00">
+    <meta property="article:modified_time" content="2022-01-01T07:07:07+01:00">
+
+  <meta itemprop="name" content="Non-Causal Associations - Reasons and Examples">
+  <meta itemprop="description" content="One phrase you heard in your probability class is that correlation does not imply causation. Later, you came across the the popular association between ice-cream and drowning numbers, you instantly recall that does not mean the ice-cream is the cause of the drowning. But, how can you explain the existence of the association? In this blog post, various interpretation of the non-casual associations is listed and explained. The code snippets used are in this notebook">
+  <meta itemprop="datePublished" content="2022-01-01T07:07:07+01:00">
+  <meta itemprop="dateModified" content="2022-01-01T07:07:07+01:00">
+  <meta itemprop="wordCount" content="1085">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Non-Causal Associations - Reasons and Examples">
+  <meta name="twitter:description" content="One phrase you heard in your probability class is that correlation does not imply causation. Later, you came across the the popular association between ice-cream and drowning numbers, you instantly recall that does not mean the ice-cream is the cause of the drowning. But, how can you explain the existence of the association? In this blog post, various interpretation of the non-casual associations is listed and explained. The code snippets used are in this notebook">
+
+      
+  
+
+
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Non-Causal Associations - Reasons and Examples</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-01-01T07:07:07+01:00">January 1, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>One phrase you heard in your probability class is that correlation does not imply causation. Later, you came across the the popular association between ice-cream and drowning numbers, you instantly recall that does not mean the ice-cream is the cause of the drowning. But, how can you explain the existence of the association?
+In this blog post, various interpretation of the non-casual associations is listed and explained. The code snippets used are in <a href="https://github.com/AhmedAbdel-Aal/DataSience-home/tree/main/non%20causal%20associations">this notebook</a></p>
+<ol>
+<li>Lack of Statistical Support</li>
+<li>Data Fishing</li>
+<li>Reversed Interpretation</li>
+<li>Induction of third variable
+<ol>
+<li>Common Cause (Fork)</li>
+<li>Indirect Association (Chain)</li>
+<li>Common Consequence(Collider)</li>
+</ol>
+</li>
+</ol>
+<h3 id="1--lack-of-statistical-support">1- Lack of Statistical Support</h3>
+<p>An association can be observed if the data points used are too few to be used in statistical test i.e, relationship existed by chance. Thus, having more data may show that the relationship between variables do not exist.</p>
+<h3 id="2--data-fishing">2- Data Fishing</h3>
+<p>Also referred to as p-hacking, data dreding, or cherry picking. This can happen when conducting large number of exploration, and testing hypothesis and only report those who shows the associations. You can take a look for various examples in <a href="http://www.tylervigen.com/spurious-correlations">spurious-correlations</a>, and here one that shows that there is relationship between computer science doctorates and arcade revenue. While, you can&rsquo;t think of logical scenario where one of these variables will be the cause of the other, this plot shows a very strong association between them. This plot is a result of data dreding, where no experiments is conducted over isolated variables against control groups. The association, maybe just by pure chance, happen to exist for the subset of data in hand.</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640712727956/cjwoLGy5j.png" alt="chart.png"></p>
+<h3 id="3--reversed-interpretation">3- Reversed Interpretation</h3>
+<p>A possible misinterpretation of the association is to reverse the cause and effect. In a study published in Nature in 1999 where the findings showed that &ldquo;Small children and babies who sleep with the light on are more likely to grow up shortsighted than children who sleep in the dark&rdquo; [4]. While there is no causal link starting from turning light on to have short-sightedness, a reverse link was found. It turned out that parents who shortsighted tends to leave lights on, and given the short-sightedness is genetic, the children of those parents may inherit it. So, short-sightedness is the cause and turning the light on is the effect.</p>
+<h3 id="4--induction-of-third-variable">4- Induction of third variable</h3>
+<h4 id="41-common-cause-fork">4.1 common cause (fork)</h4>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640723133141/IncUS9zVxY.png" alt="common_cause.PNG">
+The common cause or fork junction, where <strong>c</strong> is the confounder of <strong>a</strong> and <strong>b</strong>. Due to <strong>c</strong>, the variables <strong>a</strong> and <strong>b</strong> will be statistically correlated. If we <!-- raw HTML omitted --><em><strong>conditioned</strong></em><!-- raw HTML omitted --> on <strong>c</strong> as in figure, we will <!-- raw HTML omitted --><strong>block</strong><!-- raw HTML omitted --> the path of association from <strong>a</strong> to <strong>b</strong>. Thus, we call <strong>a</strong> and <strong>b</strong> &lsquo;conditionally independent&rsquo;.</p>
+<p>Here we implement a tweaked example from [2] using the code flow used in [1]:</p>
+<ul>
+<li>c = age of child</li>
+<li>a = speed of ball kicked by a child</li>
+<li>b = reading ability of child</li>
+</ul>
+<p>The variables <strong>a</strong> and <strong>b</strong> are gaussian with mean of age_of_child and 3 x age_of_child + 5 respectively, and standard deviations of 1. This should make both <strong>a</strong> (speed of kicked ball) and <strong>b</strong> (reading ability) high with higher values of age of child. <em>(the equations here are randomly initialized, and is not based on any facts)</em></p>
+<p>First we initialize the data points</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>n <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1000</span> <span style="color:#75715e"># number of data points</span>
+</span></span><span style="display:flex;"><span>ages <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>prob_ages <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>age_of_child <span style="color:#f92672">=</span> <span style="color:#a6e22e">sample</span>(ages, size <span style="color:#f92672">=</span> n, replace <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, prob <span style="color:#f92672">=</span> prob_ages)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>speed_of_kicked_ball <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rnorm</span>(n, mean<span style="color:#f92672">=</span> age_of_child, sd<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>reading_ability <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rnorm</span>(n, mean<span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>age_of_child <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>, sd<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p>Then, we visualize how speed of kicked ball and reading ability correlates with 0.69 degree of correlation.</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640725461550/V3X35iLDN.png" alt="cc_a_b.png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">cor</span>(speed_of_kicked_ball, reading_ability)
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">0.6955224</span>
+</span></span></code></pre></div><p>Lastly, we visualize the variables again but this time conditioned on the age. To find out the correlation between the speed of kicked ball and their reading ability has almost zero correlation in each age.</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640725573619/uovyactZb.png" alt="cc_a_b_c.png"></p>
+<pre tabindex="0"><code>dt[, .(correlation=cor(x=speed_of_kicked_ball, y=reading_ability)), by=age_of_child]
+       age_of_child correlation
+1:  age_of_child= 9 -0.04682699
+2: age_of_child= 10 -0.04419920
+3:  age_of_child= 8  0.01215684
+4:  age_of_child= 7  0.03341457
+</code></pre><p>Thus we conclude that age of child is a common cause, that makes speed of kicked ball and reading ability correlates, while there are no causal link.</p>
+<h4 id="42-indirect-association-chain">4.2 Indirect association (chain)</h4>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640730789038/bMk37ohp6.png" alt="chain.PNG"></p>
+<p>The variable <strong>c</strong> is called the mediator, which allow the effect of <strong>a</strong> to be transmitted to <strong>b</strong>. Again, <strong>c</strong> here <!-- raw HTML omitted --><strong>blocks</strong> <!-- raw HTML omitted -->the path from <strong>a</strong> to <strong>b</strong>. So, if <strong>c</strong> is being <!-- raw HTML omitted --><strong>condition on</strong><!-- raw HTML omitted -->, the correlation between <strong>a</strong> and <strong>b</strong> would disappear.</p>
+<p>Here we implement this associations by:</p>
+<ul>
+<li>a = motivation level to joining a gym</li>
+<li>c = either joining the gym or not</li>
+<li>b = average of muscle weight increase in the body</li>
+</ul>
+<p>Initializing the motivation and going to gym as binomial variables with  70% probability to be motivated and 50% to going to gym if you are motivated.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>n <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>motivation_level <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbinom</span>(n, size<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, prob<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gym<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbinom</span>(n, size<span style="color:#f92672">=</span>motivation_level, prob<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>muscle_weight_avg <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rnorm</span>(n, mean<span style="color:#f92672">=</span> gym<span style="color:#f92672">*</span><span style="color:#ae81ff">5</span> , sd<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dt <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.table</span>(motivation_level <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(motivation_level),muscle_weight_avg, gym <span style="color:#f92672">=</span><span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;went to gym = &#34;</span>,<span style="color:#a6e22e">factor</span>(gym)))
+</span></span></code></pre></div><p>Visualizing the motivation level against the muscle average weight shows an association.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">ggplot</span>(dt, <span style="color:#a6e22e">aes</span>(x<span style="color:#f92672">=</span>motivation_level, y<span style="color:#f92672">=</span>muscle_weight_avg)) <span style="color:#f92672">+</span> <span style="color:#a6e22e">geom_boxplot</span>()
+</span></span></code></pre></div><p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640731891326/ezmd4xCu7.png" alt="chain_a_b.png"></p>
+<p>This association disappears when we condition on going to gym or not.</p>
+<pre tabindex="0"><code>ggplot(dt, aes(x=motivation_level, y=muscle_weight_avg)) + geom_boxplot()  + facet_wrap(~gym)
+</code></pre><p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640731898293/OSI0t1Ufw.png" alt="chain_a_b_c.png"></p>
+<h4 id="43-common-consequence-collider">4.3 common consequence (Collider)</h4>
+<p>This is the scenario where two different variables have the same end in a causal link. Also referred to as collider.</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1640826865696/raEt4aMjC.png" alt="collider.PNG"></p>
+<p>The collider scenario works in the exact opposite way to the previous scenarios, where <!-- raw HTML omitted --><strong>conditioning on</strong> <!-- raw HTML omitted -->(observing) the variable <strong>c</strong> will <!-- raw HTML omitted --><strong>connect</strong> <!-- raw HTML omitted -->the path and make <strong>a</strong> and <strong>b</strong> dependent.</p>
+<p>Let&rsquo;s assume in some IT company a person become the project manager if he either very good in management or on the  technical side. Maybe both, yet not necessary. This IT company observed a negative correlation between being good at management and being good at IT. However, in real life this is not the case.</p>
+<p>knowing that a person is good at management explains his way to being project manager.  While, knowing a person is not very good at management, then the only other option is that he is good at IT. This negative correlation holds only because we conditioned on the person being project manager in this company. If we released this condition, we will not observe the relation anymore. This scenario is often called <strong>explain-away effect</strong> or <strong>Berkson&rsquo;s paradox</strong> [5].</p>
+<h3 id="resources">Resources</h3>
+<ol>
+<li>
+<p><a href="https://gagneurlab.github.io/dataviz/graph-supported-hypos.html#correlation-and-causation">https://gagneurlab.github.io/dataviz/graph-supported-hypos.html#correlation-and-causation</a></p>
+</li>
+<li>
+<p>J.Pearl, D.Macakenzie, The Book of Why- chapter 3- bayesian networks: what causes say about data</p>
+</li>
+<li>
+<p>C. Bishop, Pattern Recognition and Machine Learning- 8.2.1 Three example graphs</p>
+</li>
+<li>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1115762/">Children who sleep with light on may damage their sight</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Berkson's_paradox">Berkson&rsquo;s paradox</a></p>
+</li>
+<li>
+<p>cover pic. from: <a href="https://www.popularmechanics.com/science/math/a27818/correlation-causality-statistics/">https://www.popularmechanics.com/science/math/a27818/correlation-causality-statistics/</a></p>
+</li>
+</ol>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  My New Hugo Site 2024 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
