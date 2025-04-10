@@ -22,6 +22,30 @@
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2025-03-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:1313/tags/legal-ai/</loc>
+    <lastmod>2025-03-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:1313/tags/llms/</loc>
+    <lastmod>2025-03-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:1313/tags/nlp/</loc>
+    <lastmod>2025-03-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-03-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:1313/post/llms-in-law/</loc>
+    <lastmod>2025-03-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>http://localhost:1313/tags/arabic-nlp/</loc>
     <lastmod>2024-08-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -43,10 +67,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>http://localhost:1313/publication/</loc>
-    <lastmod>2024-08-01T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-08-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -136,10 +156,6 @@
   </url><url>
     <loc>http://localhost:1313/author/phillip-muller/</loc>
     <lastmod>2022-05-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2020-12-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>http://localhost:1313/tags/data-analysis/</loc>
