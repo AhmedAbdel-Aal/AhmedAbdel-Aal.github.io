@@ -6,6 +6,7 @@
       "aside",
       "blockquote",
       "body",
+      "br",
       "button",
       "circle",
       "code",
@@ -506,12 +507,19 @@
       "43-common-consequence-collider",
       "5-resources",
       "about-me",
+      "background",
       "batch-all",
       "batch-hard",
       "blog",
+      "conclusions",
+      "critical-observations",
       "embedding-visualization",
       "hide-button",
+      "implications-and-future-directions",
       "improved-triplet-loss",
+      "key-findings",
+      "methodology",
+      "model-performance-insights",
       "moon",
       "nav-menu",
       "nav-toggle",
@@ -520,6 +528,7 @@
       "page-bg",
       "papers",
       "profile",
+      "references",
       "search",
       "search_toggle",
       "section-collection",
@@ -539,7 +548,8 @@
       "sun",
       "table-of-contents",
       "top",
-      "triplet-loss-definition"
+      "triplet-loss-definition",
+      "workflow-enhancements"
     ]
   }
 }

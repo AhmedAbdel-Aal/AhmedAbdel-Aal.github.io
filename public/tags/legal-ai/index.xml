@@ -5,7 +5,7 @@
     <link>http://localhost:1313/tags/legal-ai/</link>
       <atom:link href="http://localhost:1313/tags/legal-ai/index.xml" rel="self" type="application/rss+xml" />
     <description>Legal AI</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 31 Mar 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://localhost:1313/media/icon_hu68170e94a17a2a43d6dcb45cf0e8e589_3079_512x512_fill_lanczos_center_3.png</url>
       <title>Legal AI</title>
@@ -13,11 +13,111 @@
     </image>
     
     <item>
-      <title>Gaze-enhanced Crossmodal Embeddings for Emotion Recognition</title>
-      <link>http://localhost:1313/publication/rr-paper/</link>
-      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/publication/rr-paper/</guid>
-      <description></description>
+      <title>TL;DR (Msc. Thesis) Benchmarking Large Language Models for Legal Case Classification at the European Court of Human Rights</title>
+      <link>http://localhost:1313/post/llms-in-law/</link>
+      <pubDate>Mon, 31 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/llms-in-law/</guid>
+      <description>&lt;p&gt;In recent years, artificial intelligence, particularly large language models (LLMs) like GPT-4, has transformed numerous industries by automating complex tasks. But can these powerful tools reliably classify the significance of court cases—specifically at the European Court of Human Rights (ECtHR)? This was precisely the research question I tackled in my MSc thesis at the Technical University of Munich, working in the Legal NLP lab.&lt;/p&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;The European Convention on Human Rights (ECHR), established in 1950 in response to the horrors of World War II, represents a commitment to protecting fundamental human rights across Europe. The European Court of Human Rights (ECtHR) began operating in 1959 with a mandate to interpret and enforce the Convention&amp;rsquo;s guarantees across all member states of the Council of Europe.&lt;/p&gt;
+&lt;p&gt;Over the decades, the ECHR has expanded both in reach and influence. Its jurisprudence is characterized by a dynamic interpretative approach, reflecting the principle that the Convention must be interpreted in light of contemporary conditions to ensure that protections keep pace with evolving moral and social standards. As the Court itself emphasizes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;What gives the Convention its strength and makes it extremely modern is the way the Court interprets it: dynamically, in the light of present-day conditions.&amp;rdquo;&lt;br&gt;
+— &lt;a href=&#34;https://www.echr.coe.int/documents/d/echr/Convention_Instrument_ENG&#34;&gt;The Convention, a modern instrument (Page 7)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This concept of the Convention as a &lt;strong&gt;living instrument&lt;/strong&gt; has allowed the Court to adapt its application to modern issues that could not have been anticipated when it was first created—challenges posed by new technologies, environmental concerns, and sensitive topics such as terrorism and migration.&lt;/p&gt;
+&lt;p&gt;The current case importance levels are as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Key cases&lt;/strong&gt;: The most significant judgments, decisions, and advisory opinions selected by the Bureau of the Court based on their substantial legal and societal impact.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Level 1 (High Importance)&lt;/strong&gt;: Significant contributions to the development or clarification of case-law, generally or for a specific state.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Level 2 (Medium Importance)&lt;/strong&gt;: Go beyond applying existing case-law, but without major contribution to jurisprudence.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Level 3 (Low Importance)&lt;/strong&gt;: Of little legal interest—typically simple applications of case-law, friendly settlements, or strikeouts unless a particular point of interest is raised.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;methodology&#34;&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;To explore this, I conducted extensive experiments with six state-of-the-art LLMs across three major model families:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenAI GPT Models&lt;/strong&gt;: GPT-4o and GPT-4o-mini&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Meta&amp;rsquo;s LLaMA Models&lt;/strong&gt;: LLaMA3.1-70B and LLaMA3.1-8B&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mistral Models&lt;/strong&gt;: Mistral Large and Mistral 8B&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These models were evaluated in a &lt;em&gt;zero-shot&lt;/em&gt; scenario—meaning they were not provided with specific examples of key case classifications beforehand. Instead, they relied solely on their general training to classify cases accurately. The experiments involved three different input scenarios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Facts Only&lt;/strong&gt;: Models were provided only with factual descriptions from the cases.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Facts + Legal Reasoning (+Law)&lt;/strong&gt;: Models received both factual information and detailed court reasoning.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Facts + Legal Reasoning + Citations (+Citations)&lt;/strong&gt;: Models were also given structured analyses of relevant legal precedents cited within each case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, I implemented and tested advanced reasoning workflows aimed at improving the models&amp;rsquo; analytical capabilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ReAct (Reasoning + Acting)&lt;/strong&gt;: Interleaved reasoning steps with strategic tool usage, allowing the model to iteratively refine its conclusions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;MAD.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Agent Debate&lt;/strong&gt;: Multiple instances of the same LLM debated their reasoning over multiple rounds, refining classification decisions through collaborative analysis and critique.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;key-findings&#34;&gt;Key Findings&lt;/h2&gt;
+&lt;h3 id=&#34;model-performance-insights&#34;&gt;Model Performance Insights&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;results.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Performance Variability&lt;/strong&gt;: GPT-4o emerged as the top-performing model, achieving a macro-F1 score of 68.5%. However, its decisions frequently stemmed from flawed reasoning paths, raising concerns about reliability in sensitive legal contexts.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Importance of Legal Context&lt;/strong&gt;: Using facts alone led to superficial, summary-based judgments. Adding legal reasoning significantly improved accuracy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mixed Effects of Citations&lt;/strong&gt;: Integrating detailed citation analyses sometimes helped, but occasionally confused the models—highlighting inconsistency across different LLMs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;workflow-enhancements&#34;&gt;Workflow Enhancements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Agent-Based Workflows&lt;/strong&gt;: The ReAct framework showed promise by enabling more transparent and structured reasoning. Still, models often reached conclusions prematurely without fully exploiting available resources.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Debate Limitations&lt;/strong&gt;: The multi-agent debate method improved some outcomes, but agents often reinforced their initial (sometimes incorrect) beliefs rather than correcting them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;critical-observations&#34;&gt;Critical Observations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Evaluating Reasoning Quality&lt;/strong&gt;: Traditional evaluation metrics like accuracy and F1 scores fail to capture the nuances of legal reasoning. These metrics alone are insufficient.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reasoning vs. Summarization&lt;/strong&gt;: While models demonstrated strong summarization skills, they often struggled to deliver meaningful legal interpretations without explicit contextual guidance.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The findings suggest that while models can technically handle long input contexts, they don’t always benefit from them in practice.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;implications-and-future-directions&#34;&gt;Implications and Future Directions&lt;/h2&gt;
+&lt;p&gt;My thesis underscores both the substantial potential—and the critical limitations—of leveraging LLMs in legal contexts. It highlights the urgent need for specialized methods and metrics that go beyond surface-level accuracy to assess the &lt;em&gt;quality&lt;/em&gt; of legal reasoning.&lt;/p&gt;
+&lt;p&gt;Several promising research directions emerge:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Advanced Evaluation Frameworks&lt;/strong&gt;: Developing robust, qualitative metrics to ensure that models provide not just accurate classifications, but also sound and justifiable reasoning.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Legal Comparison Mechanisms&lt;/strong&gt;: Future models might benefit from frameworks that systematically compare new cases against precedents, identifying critical deviations that signal important jurisprudential developments.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;This work introduced a binary classification task aimed at identifying &lt;em&gt;Key Cases&lt;/em&gt; within ECtHR jurisprudence—a high-stakes application that pushes the boundaries of what current LLMs can handle in legal reasoning.&lt;/p&gt;
+&lt;p&gt;Through zero-shot chain-of-thought prompting, several key trends emerged:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GPT-4o&lt;/strong&gt; stood out for its consistent improvement when provided with richer contextual inputs, showing a clear benefit from more detailed legal information.&lt;/li&gt;
+&lt;li&gt;In contrast, &lt;strong&gt;other models&lt;/strong&gt; (LLaMA and Mistral families) tended to perform best with minimal input, and their performance often deteriorated as more complex context was added—highlighting the risk of &lt;em&gt;context saturation&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;A major challenge was the &lt;strong&gt;lack of annotated reasoning ground truth&lt;/strong&gt;, making it hard to assess the quality of the models’ justifications. In many cases, models reached the &lt;em&gt;correct outcome&lt;/em&gt; but through &lt;strong&gt;incomplete or flawed logic&lt;/strong&gt;, which undermines trust in their legal applicability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-agent debate&lt;/strong&gt; setup was limited by the initial round of reasoning: if the first zero-shot chain-of-thought was weak, subsequent debate rounds often failed to correct the trajectory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., &amp;amp; Artzi, Y. (2019). Bertscore: Evaluating text generation with bert. arXiv preprint arXiv:1904.09675.&lt;/li&gt;
+&lt;li&gt;Zha, Y., Yang, Y., Li, R., &amp;amp; Hu, Z. (2023). AlignScore: Evaluating factual consistency with a unified alignment function. arXiv preprint arXiv:2305.16739.&lt;/li&gt;
+&lt;li&gt;Touvron, H., Lavril, T., Izacard, G., Martinet, X., Lachaux, M. A., Lacroix, T., &amp;hellip; &amp;amp; Lample, G. (2023). Llama: Open and efficient foundation language models. arXiv preprint arXiv:2302.13971.&lt;/li&gt;
+&lt;li&gt;Du, Y., Li, S., Torralba, A., Tenenbaum, J. B., &amp;amp; Mordatch, I. (2023). Improving factuality and reasoning in language models through multiagent debate. arXiv preprint arXiv:2305.14325.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.echrblog.com/2025/01/reflections-on-courts-key-case-law-of.html&#34;&gt;https://www.echrblog.com/2025/01/reflections-on-courts-key-case-law-of.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>
