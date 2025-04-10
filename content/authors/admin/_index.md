@@ -51,6 +51,7 @@ education:
     institution: Technical Univeristy in Munich
     date_start: 2021-10-01
     date_end: 2025-01-31
+    icon: custom/tum
     summary: |
       GPA: 3.0/4.0
   - area: BSc Computer Engineering
@@ -63,7 +64,7 @@ work:
   - position: MLOps Engineer
     company_name: Zeiss
     company_url: ''
-    company_logo: ''
+    company_logo: 'zeiss'
     date_start: 2024-11-15
     date_end: ''
     summary: |2-
@@ -73,7 +74,7 @@ work:
   - position: Working Student
     company_name: Zeiss
     company_url: ''
-    company_logo: ''
+    company_logo: 'zeiss'
     date_start: 2022-09-01
     date_end: 2024-09-01
     summary: |
@@ -129,9 +130,8 @@ awards:
     url: https://www.coursera.org/learn/neural-networks-deep-learning
     date: '2023-11-25'
     awarder: MDSI
-    icon: TUM
+    icon: custom/tum
     summary: |
-      I studied the foundational concept of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
 ---
 
 ## About Me
