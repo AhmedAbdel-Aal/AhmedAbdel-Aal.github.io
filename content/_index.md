@@ -54,7 +54,6 @@ sections:
 #    design:
 #      view: article-grid
 #      columns: 2
-
   - block: collection
     id: papers
     content:
@@ -67,15 +66,27 @@ sections:
     design:
       view: citation
   - block: collection
-    id: talks
+    id: blog
     content:
-      title: Recent & Upcoming Talks
+      title: Blog Posts
       filters:
         folders:
-          - event
+          - post
     design:
       view: article-grid
-      columns: 1
+      columns: 2
+
+#  - block: collection
+#    id: talks
+#    content:
+#      title: Recent & Upcoming Talks
+#      filters:
+#        folders:
+#          - event
+#    design:
+#      view: article-grid
+#      columns: 1
+
 #  - block: collection
 #    id: news
 #    content:
