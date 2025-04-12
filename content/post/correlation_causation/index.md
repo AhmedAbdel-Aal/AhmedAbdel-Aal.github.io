@@ -1,6 +1,6 @@
 ---
 title: Non-Causal Associations -- Reasons and Examples
-summary: full guide for the triplet loss function.
+summary: correlation does not imply causation.
 date: 2020-12-30
 authors:
   - admin
