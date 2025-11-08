@@ -20,7 +20,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: MLOps @ Zeiss
+role: ML @ Amazon Music
 
 # Organizations/Affiliations to display in Biography blox
 #organizations:
