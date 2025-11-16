@@ -55,6 +55,23 @@
     </item>
     
     <item>
+      <title>mucAI at BAREC Shared Task 2025: Towards Uncertainty Aware Arabic Readability Assessment</title>
+      <link>http://localhost:1313/publication/barec-sharedtask/</link>
+      <pubDate>Sun, 09 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/barec-sharedtask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The LLMs and the reward</title>
+      <link>http://localhost:1313/post/llm-reward-problem/</link>
+      <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/llm-reward-problem/</guid>
+      <description>&lt;p&gt;placeholder&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>TL;DR (Msc. Thesis) Benchmarking Large Language Models for Legal Case Classification at the European Court of Human Rights</title>
       <link>http://localhost:1313/post/llms-in-law/</link>
       <pubDate>Mon, 31 Mar 2025 00:00:00 +0000</pubDate>
@@ -492,6 +509,14 @@
 &lt;p&gt;5- &lt;a href=&#34;https://arxiv.org/pdf/1503.03832.pdf&#34;&gt;FaceNet: A Unified Embedding for Face Recognition and Clustering&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;6- &lt;a href=&#34;https://www.tensorflow.org/addons/api_docs/python/tfa/losses/TripletSemiHardLoss&#34;&gt;tensorflow addons Semi-Hard Triplet loss&lt;/a&gt;&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/publication/arahealth-sharedtask/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/arahealth-sharedtask/</guid>
+      <description></description>
     </item>
     
   </channel>
