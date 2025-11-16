@@ -1,6 +1,6 @@
 ---
 title: The LLMs and the reward
-summary: full guide for the triplet loss function.
+summary: WIP.
 date: 2025-04-01
 authors:
   - admin
