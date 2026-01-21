@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triplet Loss Function for embedding space learning - Ahmed Abdou</title>
+    <style>
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #111;
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        a { color: #00529b; }
+        h1 { font-size: 24px; margin: 0 0 10px 0; font-weight: normal; }
+        h2 { font-size: 20px; margin: 35px 0 15px 0; font-weight: bold; }
+        h3 { font-size: 18px; margin: 25px 0 12px 0; font-weight: bold; }
+        h4 { font-size: 16px; margin: 20px 0 10px 0; font-weight: bold; }
+        p { margin-bottom: 15px; }
+        ul, ol { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        code {
+            font-family: "Courier New", monospace;
+            background: #f4f4f4;
+            padding: 2px 5px;
+            font-size: 14px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        pre code { background: none; padding: 0; }
+        blockquote {
+            border-left: 3px solid #ccc;
+            padding-left: 15px;
+            color: #555;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        img { max-width: 100%; height: auto; margin: 20px 0; display: block; }
+        .meta { color: #555; margin-bottom: 25px; }
+        .back { margin-bottom: 25px; display: block; }
+        .toc { background: #f9f9f9; padding: 15px 20px; margin: 20px 0; border: 1px solid #eee; }
+        .toc ul { margin: 8px 0; }
+    </style>
+</head>
+<body>
+
+<a href="/" class="back">&larr; Ahmed Abdou</a>
+
+<h1>Triplet Loss Function for embedding space learning</h1>
+<p class="meta">September 2020</p>
+
+<p>In this blog, a full guide for the triplet loss function that gained special attention lately for its importance in face recognition and verification tasks. The blog discuss the triplets variations and different mining techniques. Then, some advanced notes about the soft margin from <a href="https://arxiv.org/pdf/1703.07737.pdf">[1]</a>, and Improved triplet loss from <a href="https://openaccess.thecvf.com/content_cvpr_2016/papers/Cheng_Person_Re-Identification_by_CVPR_2016_paper.pdf">[2]</a>. Finally, the visualization of trained embeddings from the GitHub Gist <a href="https://github.com/AhmedAbdel-Aal/DeepLearning_home/blob/main/Triplet%20Loss/Mnist_Embeddings_Visualization_using_Semi_Hard_Triplet_Loss.ipynb">Mnist Embeddings Visualization using Semi-Hard Triplet Loss</a>.</p>
+
+<div class="toc">
+<strong>Table of Contents</strong>
+<ul>
+    <li><a href="#1-what-is-triplet-loss-function">1- What is Triplet Loss Function</a>
+        <ul>
+            <li><a href="#siamese-networks">Siamese Network</a></li>
+            <li><a href="#triplet-loss-definition">Triplet Loss Definition</a></li>
+        </ul>
+    </li>
+    <li><a href="#2-triplets-variation">2- Triplets variation</a></li>
+    <li><a href="#3-triplets-mining-techniques">3- Triplets mining techniques</a></li>
+    <li><a href="#4-advanced-notes">4- Advanced Notes</a>
+        <ul>
+            <li><a href="#soft-margin">Soft margin</a></li>
+            <li><a href="#improved-triplet-loss">Improved triplet loss</a></li>
+            <li><a href="#embedding-visualization">Embedding visualization</a></li>
+        </ul>
+    </li>
+    <li><a href="#5-resources">5- Resources</a></li>
+</ul>
+</div>
+
+<h2 id="1-what-is-triplet-loss-function">1-What is Triplet Loss Function</h2>
+
+<p>Triplet loss is always accompanied with face recognition, verification tasks. Triplet loss allows the option of dealing with variable number of classes, as in face recognition. Face recognition is the question of "who is this person from all the persons in the data-set we have". Triplet loss also raised with Siamese networks architecture.</p>
+
+<h3 id="siamese-networks">Siamese Networks</h3>
+
+<p>Siamese network is the type of network that have more than one instance of the same model, to learn similarities and differences between data inputs. To illustrate more, assume we want to build face recognition model, then Siamese network is a good choice, and it would work in the following manner:</p>
+
+<p>First of all, let's create a model that takes an image as inputs and output an embedding of that image.</p>
+
+<img src="s.png" alt="Embedding network">
+
+<p>Then let's create two instances of that model, and pass the two corresponding embeddings into a similarity function. If the two images are of the <strong><em>same person</em></strong>, then they should have <strong><em>high similarity</em></strong>, and <strong><em>low similarity</em></strong> if the two images are of <strong><em>different persons</em></strong>. Now, we can define that the loss is the complement of the similarity.</p>
+
+<img src="siamese.png" alt="Siamese network">
+
+<h3 id="triplet-loss-definition">Triplet Loss Definition</h3>
+
+<p>The aim of the triplet loss is to make sure of:</p>
+<ul>
+    <li>The instances from the same class are pulled near each other</li>
+    <li>The instances from different classes are pushed away from each other.</li>
+</ul>
+
+<p>To explain how the previous two points are achieved by the triplet loss, let's assume we have a neural network that works as an embedding function. Assume that, an instance from our data-set is x, and the embedding function is f(x) that result in an embeddings vector X. By the same concept, another instance y would result in Y vector after being passed through f(y). d(X,Y) is a function that calculates the distance between the two vectors X and Y. If x and y belong to the same class, then our aim is to make this distance small as possible, and the opposite otherwise.</p>
+
+<p>To formalize the previous requirements, we need to pick three embeddings with the following specific properties:</p>
+<ul>
+    <li><strong><em>anchor</em></strong>, A = f(a).</li>
+    <li><strong><em>positive</em></strong>, P = f(p). Another instance from the same class as the anchor.</li>
+    <li><strong><em>negative</em></strong>, N = f(n). Another instance from a different class than the anchor.</li>
+</ul>
+
+<p>That's from where the name "triplets" came. Then, we need to minimize the distance d(A,P), and maximize the distance d(A,N). To do so:</p>
+
+<img src="derivation%20without%20margin.PNG" alt="Derivation without margin">
+
+<p>The previous inequality is satisfied when the d(A,N) is bigger than the d(A,P). However, there is a trivial solution that also satisfies the equation, which is both the distances are equal to zero. To prevent the trained model from this trivial solution, a new parameter called "margin" is introduced, so that the new derivation would be like:</p>
+
+<img src="derivation%20with%20margin.PNG" alt="Derivation with margin">
+
+<p>To formulate this requirement into a function, the hinge function is used. The hinge function assure that if the triplets already follow our requirements, then no loss (zero loss) is detected.</p>
+
+<img src="TL.PNG" alt="Triplet Loss formula">
+
+<p>A practical intuition of what triplet loss do in face recognition is, if we applied the triplet loss for training the Siamese networks mentioned above, then the embeddings for two <strong><em>different images</em></strong> for the <strong><em>same person</em></strong> have a small distance between each other, and both of them having a bigger distances with the embeddings for the images of another <strong><em>different person</em></strong>.</p>
+
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1643160063974/QTfxpsSUB.png?auto=compress,format&format=webp" alt="Face recognition embeddings">
+
+<h2 id="2-triplets-variation">2-Triplets variation</h2>
+
+<p>Triplets variations means that there are more than one type of triplets that you can collect from your data. First of all, we have a base rule that defines that triplets as anchor, positive example and negative example. The variations comes when which exactly positive examples from all the positives that you can choose at each time, and which exactly the negative example that you can choose from all the negative examples that you have.</p>
+
+<p>according to our rule:</p>
+
+<img src="TL.PNG" alt="Triplet Loss formula">
+
+<p>we have three kind of triplets that we can generate:</p>
+
+<p><strong><em>Easy Triplets</em></strong> - these triplets results in zero loss because they are already satisfying the loss function i.e., the negative example has bigger distance than the positive example plus the margin</p>
+
+<img src="easy-triplets.PNG" alt="Easy triplets">
+
+<p><strong><em>Semi-Hard Triplets</em></strong> - the negative example is not closer to the anchor more than the positive, but the negative example has smaller distance than the positive example plus the margin</p>
+
+<img src="semi-hard%20triplets.PNG" alt="Semi-hard triplets">
+
+<p><strong><em>Hard Triplets</em></strong> - The nearest negative example and the farthest positive example to the anchor are chosen</p>
+
+<img src="hard%20triplets.PNG" alt="Hard triplets">
+
+<h2 id="3-triplets-mining-techniques">3-Triplets mining techniques</h2>
+
+<p>Whatever the kind of triplets you have chosen to generate, you need to choose between two different generation approaches, offline and online mining. The core difference between them is, with offline mining you generate the triplets before the training process from your original data. While in online mining, you generate the triplets after passing your data through your embedding network and works on the embeddings themselves rather than the data examples. To get in more details for each approach:</p>
+
+<h3>Offline mining</h3>
+
+<p>You can assume that Offline mining approach is like a Siamese network with three instances of the same embedding network. Each one of the three networks takes the anchor, positive and negative examples respectively. After computing the embeddings from each example, we calculate the required distances, then the triplet loss.</p>
+
+<p>First we create list of triplets (a,p,n), whatever the type of triplets we need to generate, then we divide them into N batches. For each batch, we pass triplets one after the other, resulting in their corresponding embeddings. So we make N passes for one epoch.</p>
+
+<img src="offline-mining.png" alt="Offline mining">
+
+<p>One point can be added here, is that we can update the distribution of the triplets over the N batches after each epoch.</p>
+
+<p>The drawbacks of this approach are:</p>
+<ul>
+    <li>you need to make a full pass on the data-set before the training.</li>
+    <li>you may need to update the mined batches after each epochs.</li>
+    <li>It is not clear which of the triplets you generated are semi-hard and which are hard, because the type of triplets depends on the distance function, which in turns depends on the embedding vector.</li>
+    <li>The memory and computation constraints due to training 3 identical networks.</li>
+</ul>
+
+<h3>Online mining</h3>
+
+<p>The idea of Online mining is to overcome the computation and memory drawback of the offline mining. Thus the triplets mining is applied over the embeddings of the data, not the data itself. Therefore the architecture of the model is changed into:</p>
+
+<img src="offline-mining.png" alt="Online mining architecture">
+
+<p>First, we pass a 3N batch of input data through the embedding network to calculate 3N embedding vectors. Secondly, we create a pair-wise distance matrix for all the embedding vectors. Third, for each vector we chose a positive and negative examples to calculate the loss. Finally, we accumulate the loss from all the triplets to be out batch loss.</p>
+
+<p>Worth to mention that the number of valid triplets we can get from a batch depends on how the data are distributed over the batches. In best case scenario, If we passed 3N input Batch to the embedding network, we can get at most N triplets. Thus we can divide the data classes fairly over the batches before training, but this would not be the best solution in case of imbalanced data.</p>
+
+<p>There are two types of online triplets mining strategies introduced in <a href="https://arxiv.org/pdf/1703.07737.pdf">In Defense of the Triplet Loss for Person Re-Identification</a>. They are named <code>Batch All</code> and <code>Batch Hard</code>. An implementation for the two strategies are implemented in the great blog post by Olivier Moindrot <a href="https://omoindrot.github.io/">Triplet Loss and Online Triplet Mining in TensorFlow</a>.</p>
+
+<h4>Batch Hard</h4>
+
+<p>Select the hardest positive (farthest positive) and the hardest negative (nearest negative) for each anchor within its batch. The also have been referred by <strong>moderate triplets</strong>, as they are the hardest but within its batch only, not over all the data-set.</p>
+
+<h4>Batch All</h4>
+
+<p>Select all the possible combination of triplets (hard, and semi-hard).</p>
+
+<h2 id="4-advanced-notes">4-Advanced Notes</h2>
+
+<h4 id="soft-margin">Soft margin</h4>
+
+<p>Imagine a triplets where the condition <code>d(A,N) >= d(A,P) + margin</code> is already satisfied, then according to triplet loss rule that will result in zero. The zero we got is due to the hinge function <strong>F(x) = max(x,0)</strong>. But, what if we want to further make the gap wider. In other words, push the negative example more farther and pull the positive example more closer.</p>
+
+<p>From <a href="https://arxiv.org/pdf/1703.07737.pdf">In Defense of the Triplet Loss for Person Re-Identification</a></p>
+
+<blockquote>The role of the hinge function [m + •]+ is to avoid correcting "already correct" triplets. But in person ReID, it can be beneficial to pull together samples from the same class as much as possible</blockquote>
+
+<p>ReID: person re-identification.</p>
+
+<p>To do so, the hinge function is replaced by another function, called soft plus <strong>F(x) = 1+e<sup>x</sup></strong>. This function knows as <code>log1p</code> in numpy library. check <a href="https://numpy.org/doc/stable/reference/generated/numpy.log1p.html">here</a>.</p>
+
+<p>The reason for the soft margin naming came from <a href="https://arxiv.org/pdf/1703.07737.pdf">In Defense of the Triplet Loss for Person Re-Identification</a></p>
+
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1643160392810/dOkCbm_7y.jpeg?auto=compress,format&format=webp" alt="Soft margin comparison">
+
+<blockquote>The softplus function has similar behavior to the hinge, but it decays exponentially instead of having a hard cut-off, we hence refer to it as the soft-margin formulation.</blockquote>
+
+<h4 id="improved-triplet-loss">Improved triplet loss</h4>
+
+<p>In <a href="https://openaccess.thecvf.com/content_cvpr_2016/papers/Cheng_Person_Re-Identification_by_CVPR_2016_paper.pdf">Person Re-Identification by Multi-Channel Parts-Based CNN with Improved Triplet Loss Function</a> a new approach of calculating the triplet loss is proposed. The reason for new proposed way is to make sure that each class cover a reasonable intra-class space in the new learned space.</p>
+
+<blockquote>instances belonging to the same person may form a large cluster with a relatively large average intra-class distance in the learned feature space. Clearly, this is not a desired outcome, and will inevitably hurt the person re-id performance.</blockquote>
+
+<p>For this reason a new margin <strong>m2</strong> which is much smaller than the first margin <strong>m1</strong> is used to pull the instances of the same class more closer. The new triplet loss equation would be:</p>
+
+<img src="improved%20TL.PNG" alt="Improved triplet loss">
+
+<p><strong>Note:</strong> The previous equation is from <a href="https://openaccess.thecvf.com/content_cvpr_2016/papers/Cheng_Person_Re-Identification_by_CVPR_2016_paper.pdf">here</a>, and it is modified to match the blog notations.</p>
+
+<h4 id="embedding-visualization">Embedding visualization</h4>
+
+<p>One way to gain intuition about the pushing and pulling between the embeddings vectors is to visualize them over the training process. Usually the embedding vector is of a high dimension, for example in FaceNet paper the embedding vector length was 128. Hence, a dimensionality reduction technique is applied to reduce the embedding vector size to 2 or 3 dimensions. principal component analysis (<strong>PCA</strong>) and t-distributed stochastic neighbor embedding (<strong>t-SNE</strong>) are the most popular ways used in high dimension vectors visualization.</p>
+
+<p>In this GitHub Gist <a href="https://gist.github.com/AhmedAbdel-Aal/794d6f9c004bd07762975db580734a44">Mnist Embeddings Visualization using Semi-Hard Triplet Loss</a>, the Mnist data-set are passed through an Embedding network that is trained via <a href="https://www.tensorflow.org/addons/api_docs/python/tfa/losses/TripletSemiHardLoss">tensorflow addons Semi-Hard Triplet loss</a>.</p>
+
+<p>Here is the architecture from the embedding network used, taken from <a href="https://www.tensorflow.org/addons/api_docs/python/tfa/losses/TripletSemiHardLoss">tensorflow addons Semi-Hard Triplet loss</a>. One thing to highlight is the last layer in the network, which is <strong>L2_norm</strong> layer. This layer is added so that the Euclidian norm of the embedding vector is 1. This in turn forces the embeddings to be on a hypersphere.</p>
+
+<p>From <a href="https://arxiv.org/pdf/1503.03832.pdf">FaceNet</a></p>
+
+<blockquote>Additionally, we constrain this embedding to live on the d-dimensional hypersphere, i.e. |f(x)|<sub>2</sub> = 1.</blockquote>
+
+<pre><code>embedding_network = tf.keras.Sequential([
+        tf.keras.layers.Conv2D(filters=64, kernel_size=2, padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPooling2D(pool_size=2),
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Conv2D(filters=32, kernel_size=2, padding='same', activation='relu'),
+        tf.keras.layers.MaxPooling2D(pool_size=2),
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(embedding_size, activation=None), # No activation on final dense layer
+        tf.keras.layers.Lambda(lambda x: tf.math.l2_normalize(x, axis=1)) # L2 normalize embeddings
+
+    ])</code></pre>
+
+<p>Two principal components of these embedding vectors are then visualized before and after training.</p>
+
+<img src="before-after.png" alt="Before and after training">
+
+<p>Also the embeddings are plotted before each epoch to monitor how the triplet-loss affects the embeddings of the same class to be pulled towards each other, and the dissimilar classes to be pushed away from each other.</p>
+
+<img src="Embeddings_over_training.gif" alt="Embeddings over training">
+
+<h2 id="5-resources">5-Resources</h2>
+
+<ol>
+    <li><a href="https://arxiv.org/pdf/1703.07737.pdf">In Defense of the Triplet Loss for Person Re-Identification</a></li>
+    <li><a href="https://openaccess.thecvf.com/content_cvpr_2016/papers/Cheng_Person_Re-Identification_by_CVPR_2016_paper.pdf">Person Re-Identification by Multi-Channel Parts-Based CNN with Improved Triplet Loss Function</a></li>
+    <li>Blog post by Olivier Moindrot <a href="https://omoindrot.github.io/">Triplet Loss and Online Triplet Mining in TensorFlow</a></li>
+    <li>Blog post Brandon Amos <a href="http://bamos.github.io/2016/01/19/openface-0.2.0/">OpenFace 0.2.0: Higher accuracy and halved execution time</a></li>
+    <li><a href="https://arxiv.org/pdf/1503.03832.pdf">FaceNet: A Unified Embedding for Face Recognition and Clustering</a></li>
+    <li><a href="https://www.tensorflow.org/addons/api_docs/python/tfa/losses/TripletSemiHardLoss">tensorflow addons Semi-Hard Triplet loss</a></li>
+</ol>
+
+</body>
+</html>
